@@ -22,29 +22,15 @@
         </nav>
     </header>
 
- <!-- Experiences Section -->
-<section id="experiences" class="section">
-    <h2>Experiences</h2>
-    <div class="experience-container">
-        <div class="exp-card">
-            <a href="https://www.harita.gov.tr/" target="_blank" class="card-content">
-                <img src="img/mapping.jpg" alt="General Directorate of Mapping" class="exp-image">
-                <h3>General Directorate of Mapping</h3>
-                <p>Worked in Remote Sensing, Photogrammetry, Geodesy, Cartography, and GIS.</p>
-            </a>
+    <section class="home">
+        <div class="background-image"></div>
+        <div class="content">
+            <h2>Hi, I'm <span>Ilgın Çiğdem</span></h2>
+            <h4 class="student-title">Geomatics Engineering Student</h4>
+            <a href="Ilgın_Çiğdem_Cv.pdf" download="Ilgın_CV" class="btn-download">Download CV</a>
         </div>
+    </section>
 
-        <div class="exp-card">
-            <a href="https://www.turksat.com.tr/tr" target="_blank" class="card-content">
-                <img src="img/türksat.jpg" alt="Türksat" class="exp-image">
-                <h3>Türksat</h3>
-                <p>Worked on Intelligent Transportation Systems, Remote Sensing, and GIS projects.</p>
-            </a>
-        </div>
-    </div>
-</section>
-
-
+    
 </body>
-</html>
 </html>
