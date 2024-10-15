@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilgın Çiğdem</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/ol@latest/dist/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@latest/ol.css">
+</head>
+<body>
+    <header>
+        <h2 class="logo"><span>I</span>lgın.</h2>
+        <nav class="navigation">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+            <a href="experiences.html">Experiences</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section id="blog" class="section">
+        <h2>My Travels</h2>
+        <div class="travel-gallery">
+
+
+        <div class="city-card">
+            <img src="img/berlin.jpg" alt="Berlin">
+            <div class="city-name">Berlin</div>
+            <button class="btn-city" data-target="berlin-info">About</button>
+            <button class="btn-map" data-coords="13.4050,52.5200">View on Map</button>
+            <div id="berlin-info" class="info-panel">
+                Berlin is the vibrant capital of Germany, known for its rich history, diverse culture, and modern architecture. 
+                The city is a hub for arts and music, boasting iconic landmarks like the Brandenburg Gate, Berlin Wall, and Museum Island. 
+                Berlin’s dynamic neighborhoods, such as Kreuzberg and Mitte, offer a mix of local boutiques and culinary experiences. 
+                The city's history, from its Prussian roots to its role during the Cold War, shapes its unique character.
+            </div>
+        </div>
+
+        <div class="city-card">
+            <img src="img/prague.jpg" alt="Prague">
+            <div class="city-name">Prague</div>
+            <button class="btn-city" data-target="prague-info">About</button>
+            <button class="btn-map" data-coords="14.4208,50.0880">View on Map</button>
+            <div id="prague-info" class="info-panel">
+                Prague, the capital of the Czech Republic, is renowned for its stunning medieval architecture and charming cobblestone streets. 
+                The city features a mix of Gothic, Baroque, and Renaissance styles, with highlights including the Prague Castle, Charles Bridge, 
+                and the Astronomical Clock. Known as the "City of a Hundred Spires," Prague offers a rich cultural scene and delicious cuisine, 
+                making it a popular destination for travelers.
+            </div>
+        </div>
+
+        <div class="city-card">
+            <img src="img/malta.jpg" alt="Malta">
+            <div class="city-name">Malta</div>
+            <button class="btn-city" data-target="malta-info">About</button>
+            <button class="btn-map" data-coords="14.5146,35.8997">View on Map</button>
+            <div id="malta-info" class="info-panel">
+                Malta is a small island nation in the Mediterranean Sea, famous for its stunning coastlines, historic sites, and vibrant culture. 
+                With a history dating back thousands of years, Malta boasts ancient temples, medieval fortifications, and baroque architecture. 
+                The capital city, Valletta, is a UNESCO World Heritage site filled with museums, churches, and gardens. 
+                Malta's warm climate, crystal-clear waters, and diverse marine life make it a popular destination for beachgoers and scuba divers.
+            </div>
+        </div>
+
+    </div>
+
+    <div id="map" class="map-container"></div>
+</section>
+
+<script>
+    // OpenLayers haritasını başlatma
+    var map = new ol.Map({
+        target: 'map',
+        layers: [new ol.layer.Tile({ source: new ol.source.OSM() })],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([14.4208, 50.0880]), // Default center: Prague
+            zoom: 4
+        })
+    });
+
+    // Şehir açıklamalarını gösterme
+    document.querySelectorAll('.btn-city').forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-target');
+            document.querySelectorAll('.info-panel').forEach(panel => {
+                panel.style.display = 'none'; // Önce tüm panelleri gizle
+            });
+            document.getElementById(targetId).style.display = 'block'; // İlgili paneli göster
+        });
+    });
+
+    // Harita konumuna odaklanma
+    document.querySelectorAll('.btn-map').forEach(button => {
+        button.addEventListener('click', () => {
+            const [lon, lat] = button.getAttribute('data-coords').split(',').map(Number);
+            const coords = ol.proj.fromLonLat([lon, lat]);
+
+            // Harita animasyonu ile zoom yapma
+            map.getView().animate({ center: coords, duration: 2000, zoom: 8 });
+
+            // 3 saniye sonra tekrar eski zoom'a dönme
+            setTimeout(() => {
+                map.getView().animate({ zoom: 4, duration: 2000 });
+            }, 3000);
+        });
+    });
+</script>
+
+
+    
+    </body>
+    </html>
